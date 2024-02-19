@@ -1,7 +1,7 @@
 <template>
-  <header class="header">
+  <header :class="{ 'header': true, 'header-checked': isChecked }">
     <h1>{{ msg }}</h1>
-    <span v-if="isChecked">isChecked é true</span>
+    <span v-if="isChecked">test vuex isChecked==true</span>
     <a href="https://robotip.com.br" target="_blank">
       <figure class="logo">
         <picture>
@@ -40,6 +40,11 @@ export default {
   background-color: #262626;
   color: #f0f0f0;
   overflow: hidden;
+}
+
+.header-checked {
+  background-color: #d9d9d9; /* Cor de fundo quando isChecked é true */
+  color: #141414;
 }
 
 .logo picture img {
