@@ -29,27 +29,31 @@
           ></path>
         </svg>
       </button>
+      <ApiFlask />
     </div>
   </main>
 </template>
 
 <script>
+import ApiFlask from './ApiFlask.vue';
+
 export default {
-  computed: {
-    isChecked: {
-      get() {
-        return this.$store.state.isChecked;
-      },
-      set(value) {
-        this.$store.commit("setChecked", value);
-      },
+    computed: {
+        isChecked: {
+            get() {
+                return this.$store.state.isChecked;
+            },
+            set(value) {
+                this.$store.commit("setChecked", value);
+            },
+        },
     },
-  },
-  methods: {
-    updateChecked() {
-      this.$store.commit("setChecked", this.isChecked);
+    methods: {
+        updateChecked() {
+            this.$store.commit("setChecked", this.isChecked);
+        },
     },
-  },
+    components: { ApiFlask }
 };
 </script>
 
