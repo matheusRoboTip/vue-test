@@ -7,7 +7,7 @@
       </label>
     </div>
     <div class="main-button">
-      <button class="animated-button">
+      <button class="animated-button" @click="callApi">
         <svg
           viewBox="0 0 24 24"
           class="arr-2"
@@ -29,31 +29,45 @@
           ></path>
         </svg>
       </button>
-      <ApiFlask />
+      <span v-if="apiResponse" :class="{ apiResponse: true, 'apiResponse-checked': isChecked }">{{ apiResponse }}</span>
     </div>
   </main>
 </template>
 
 <script>
-import ApiFlask from './ApiFlask.vue';
-
 export default {
-    computed: {
-        isChecked: {
-            get() {
-                return this.$store.state.isChecked;
-            },
-            set(value) {
-                this.$store.commit("setChecked", value);
-            },
-        },
+  data() {
+    return {
+      apiResponse: null,
+    };
+  },
+  computed: {
+    isChecked: {
+      get() {
+        return this.$store.state.isChecked;
+      },
+      set(value) {
+        this.$store.commit("setChecked", value);
+      },
     },
-    methods: {
-        updateChecked() {
-            this.$store.commit("setChecked", this.isChecked);
-        },
+  },
+  methods: {
+    updateChecked() {
+      this.$store.commit("setChecked", this.isChecked);
     },
-    components: { ApiFlask }
+    async callApi() {
+      try {
+        // Realize a chamada à sua API
+        const response = await fetch('https://flask-py-test.vercel.app/simulate');
+        const data = await response.text();
+
+        // Atualize o estado para exibir a resposta na interface
+        this.apiResponse = data;
+      } catch (error) {
+        console.error('Erro ao chamar a API:', error);
+      }
+    },
+  },
 };
 </script>
 
@@ -226,5 +240,16 @@ input:checked + .slider:before {
   width: 220px;
   height: 220px;
   opacity: 1;
+}
+
+.apiResponse {
+  color: #f0f0f0;
+  padding: 0.5rem 0;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.apiResponse-checked {
+  color: #141414;
 }
 </style>
