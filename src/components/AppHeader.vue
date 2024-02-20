@@ -1,6 +1,6 @@
 <template>
   <header :class="{ header: true, 'header-checked': isChecked }">
-    <a href="https://github.com/matheusRoboTip/flask-py-test">
+    <a href="https://github.com/matheusRoboTip/flask-py-test" :class="{ 'a-link': true, 'a-link-checked': isChecked }">
       <h1>{{ msg }}</h1>
     </a>
     <span v-if="isChecked">test vuex isChecked==true</span>
@@ -49,12 +49,16 @@ export default {
   color: #141414;
 }
 
+.a-link {
+  text-decoration: none; /* Remove estilos padrão apenas para links com a classe link-no-style */
+  color: #f0f0f0; 
+}
+.a-link-checked {
+  color: #141414; 
+}
+
 .logo picture img {
   height: 9.5vh;
   width: 9.5vh;
-}
-
-a {
-  text-decoration: none;
 }
 </style>
