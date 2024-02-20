@@ -1,6 +1,8 @@
 <template>
-  <header :class="{ 'header': true, 'header-checked': isChecked }">
-    <h1>{{ msg }}</h1>
+  <header :class="{ header: true, 'header-checked': isChecked }">
+    <a href="https://github.com/matheusRoboTip/flask-py-test">
+      <h1>{{ msg }}</h1>
+    </a>
     <span v-if="isChecked">test vuex isChecked==true</span>
     <a href="https://robotip.com.br" target="_blank">
       <figure class="logo">
