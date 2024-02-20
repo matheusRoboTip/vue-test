@@ -19,7 +19,7 @@ export default {
   methods: {
     fetchApiData() {
       axios
-        .get("http://localhost:5000/") // Substitua pela URL da sua API Flask
+        .get("https://flask-py-test.vercel.app/simulate") // Substitua pela URL da sua API Flask
         .then((response) => {
           this.apiData = response.data;
         })
